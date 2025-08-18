@@ -385,12 +385,27 @@ function getSmartThumbnail(slug: string, body: string, title: string, tags: stri
     'sound-ok-horn': '/images/bangalore-traffic.jpg',
     'manohsipcig': '/images/writing-child.jpg',
     'words': '/images/writing-child.jpg',
-    'bharat-sangeet-utsav': '/images/classical-music.jpg'
+    'bharat-sangeet-utsav': '/images/classical-music.jpg',
+    // Personal posts that should use Vikram's image
+    'skipping-christmas': '/images/vikram.jpg',
+    'choices-in-life': '/images/vikram.jpg',
+    'missing-someone-special': '/images/vikram.jpg',
+    'malatesh-long-lost-friend': '/images/vikram.jpg',
+    'end-of-summer': '/images/vikram.jpg'
   }
   
   // Check if we have a specific image for this post
   if (knownImages[slug]) {
     return knownImages[slug]
+  }
+  
+  // Check for personal/reflection content that should use Vikram's photo
+  if (content.includes('personal') || content.includes('reflection') || content.includes('memory') || 
+      content.includes('myself') || content.includes('childhood') || content.includes('home town') ||
+      content.includes('family') || content.includes('friend') || content.includes('missing') ||
+      content.includes('nostalgia') || tags.includes('personal') || tags.includes('reflection') ||
+      tags.includes('family') || tags.includes('memories')) {
+    return '/images/vikram.jpg'
   }
   
   // Smart placeholder selection based on content keywords

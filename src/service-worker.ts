@@ -14,6 +14,7 @@ const STATIC_ASSETS = [
 
 // Image assets to cache
 const IMAGE_ASSETS = [
+  '/images/vikram.jpg',
   '/images/dev-placeholder.jpg',
   '/images/tech-placeholder.jpg',
   '/images/travel-placeholder.jpg',
