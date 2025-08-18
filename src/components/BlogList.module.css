@@ -1,0 +1,363 @@
+:root {
+  --card-radius: 16px;
+  --mb-pink: #ff9f7a;
+  --mb-cream: #fff5f2;
+  --mb-green: #8fbc8f;
+  --mb-gray: #f8f8f8;
+  --mb-text: #2c2c2c;
+  --mb-text-light: #666;
+}
+
+.blogList {
+  display: block;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.listSectionBanner {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, var(--mb-cream) 0%, #fff 100%);
+  border-radius: var(--card-radius);
+  margin-bottom: 2rem;
+}
+
+.listSectionBanner h3 {
+  font-size: 2.5rem;
+  color: var(--mb-text);
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+.controls {
+  background: #fff;
+  padding: 24px;
+  border-radius: var(--card-radius);
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  border: 1px solid #f0f0f0;
+}
+
+.search {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 50px;
+  border: 2px solid #f0f0f0;
+  background: #fafafa;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.search:focus {
+  border-color: var(--mb-pink);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(255,159,122,0.1);
+}
+
+.filters { 
+  display: flex; 
+  gap: 24px; 
+  align-items: flex-start; 
+  flex-wrap: wrap;
+}
+
+.filterGroup { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px;
+  min-width: 140px;
+}
+
+.filterGroup label { 
+  font-size: 14px; 
+  color: var(--mb-text); 
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tagList {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  max-width: 400px;
+}
+
+.yearList {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  max-width: 300px;
+}
+
+.toggleBtn {
+  border: 2px solid #e8e8e8;
+  background: #fff;
+  color: var(--mb-text-light);
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+}
+
+.toggleBtn:hover {
+  border-color: var(--mb-pink);
+  color: var(--mb-pink);
+}
+
+.toggleBtn.active { 
+  background: var(--mb-pink); 
+  color: white; 
+  border-color: var(--mb-pink);
+  transform: translateY(-1px);
+}
+
+.filterActions { 
+  margin-left: auto; 
+  display: flex; 
+  gap: 12px; 
+  align-items: center;
+  margin-top: 8px;
+}
+
+.filterActions button {
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.postGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .postGrid { 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .postGrid { 
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.postCard {
+  background: #fff;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 1px solid #f5f5f5;
+  position: relative;
+}
+
+.postCard:hover { 
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.postCard:nth-child(3n+1) {
+  background: linear-gradient(145deg, #fff, var(--mb-cream));
+}
+
+.postCard:nth-child(3n+2) {
+  background: linear-gradient(145deg, #fff, #f0f8f0);
+}
+
+.postCard:nth-child(3n+3) {
+  background: linear-gradient(145deg, #fff, #faf9f7);
+}
+
+.postHero { 
+  height: 220px; 
+  background: linear-gradient(135deg, var(--mb-gray) 0%, #e8e8e8 100%);
+  background-size: cover; 
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.postHero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.1));
+}
+
+.postBody { 
+  padding: 24px; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px;
+}
+
+.postCard h3 {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: var(--mb-text);
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.meta { 
+  color: var(--mb-text-light); 
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tags { 
+  display: flex; 
+  gap: 6px; 
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+
+.tag { 
+  background: rgba(255,159,122,0.1); 
+  color: var(--mb-pink); 
+  padding: 4px 12px; 
+  border-radius: 15px; 
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.excerpt { 
+  color: var(--mb-text-light); 
+  line-height: 1.6;
+  font-size: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.yearGroup { 
+  margin: 48px 0 24px 0;
+}
+
+.yearHeading { 
+  background: linear-gradient(135deg, var(--mb-pink), #ff7a5c);
+  color: white;
+  padding: 16px 24px; 
+  border-radius: 30px; 
+  margin: 0 0 32px 0; 
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(255,159,122,0.3);
+}
+
+.yearList { 
+  margin-bottom: 24px;
+}
+
+.sentinel { 
+  height: 1px; 
+}
+
+.loadMore { 
+  display: flex; 
+  justify-content: center; 
+  padding: 40px 20px;
+}
+
+.loadMore button {
+  background: linear-gradient(135deg, var(--mb-pink), #ff7a5c);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255,159,122,0.3);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.loadMore button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255,159,122,0.4);
+}
+
+.loadMore span {
+  color: var(--mb-text-light);
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .blogList {
+    padding: 0 16px;
+  }
+  
+  .listSectionBanner {
+    padding: 32px 20px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .listSectionBanner h3 {
+    font-size: 2rem;
+  }
+  
+  .controls {
+    padding: 20px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .filters {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .filterGroup {
+    min-width: auto;
+  }
+  
+  .filterActions {
+    margin-left: 0;
+    justify-content: space-between;
+  }
+  
+  .postGrid {
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  
+  .postHero {
+    height: 200px;
+  }
+  
+  .yearGroup {
+    margin: 32px 0 20px 0;
+  }
+}

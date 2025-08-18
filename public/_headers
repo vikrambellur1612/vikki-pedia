@@ -1,0 +1,7 @@
+/*
+  Add security and caching headers for Netlify
+*/
+/* Cache static assets aggressively */
+/* /assets/*
+  Cache-Control: public, max-age=31536000, immutable
+*/
