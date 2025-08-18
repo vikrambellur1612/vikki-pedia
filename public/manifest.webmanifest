@@ -1,15 +1,40 @@
 {
-  "name": "Vikki-Pedia",
-  "short_name": "Vikki",
-  "start_url": ".",
+  "name": "Vikki-Pedia - Personal Blog & Memories",
+  "short_name": "Vikki-Pedia",
+  "description": "A modern, responsive personal blog showcasing life experiences, thoughts, and memories with beautiful design and smart features.",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#1f2937",
+  "orientation": "portrait-primary",
+  "background_color": "#fff5f2",
+  "theme_color": "#ff9f7a",
+  "categories": ["lifestyle", "personal", "blog"],
+  "lang": "en-US",
   "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
     {
       "src": "/vite.svg",
       "sizes": "any",
       "type": "image/svg+xml"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/placeholder-1.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
     }
   ]
 }

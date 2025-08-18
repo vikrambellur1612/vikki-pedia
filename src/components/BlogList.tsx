@@ -11,14 +11,39 @@ export default function BlogList({ onSelect, onPreview, grouped = false, compact
 
   // UI state for filtering and search
   const [query, setQuery] = useState('')
-  const [selectedTag, setSelectedTag] = useState<string | null>(null)
+  const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [selectedYear, setSelectedYear] = useState<string | null>(null)
   const [sortAsc, setSortAsc] = useState(false)
+  const [tagDropdownOpen, setTagDropdownOpen] = useState(false)
+  const [tagSearchQuery, setTagSearchQuery] = useState('')
 
   // pagination / infinite scroll
   const PAGE = 12
   const [page, setPage] = useState(1)
   const sentinel = useRef<HTMLDivElement | null>(null)
+  const tagDropdownRef = useRef<HTMLDivElement>(null)
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (tagDropdownRef.current && !tagDropdownRef.current.contains(event.target as Node)) {
+        setTagDropdownOpen(false)
+      }
+    }
+    
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape' && tagDropdownOpen) {
+        setTagDropdownOpen(false)
+      }
+    }
+    
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [tagDropdownOpen])
 
   useEffect(() => {
     const modules = import.meta.glob('/content/**/*.md', { as: 'raw' }) as Record<string, () => Promise<string>>
@@ -78,10 +103,18 @@ export default function BlogList({ onSelect, onPreview, grouped = false, compact
 
   const tags = useMemo(() => Array.from(new Set(posts.flatMap(p => p.meta.tags ?? []))).sort(), [posts])
   const years = useMemo(() => Array.from(new Set(posts.map(p => p.meta.date ? new Date(p.meta.date).getFullYear().toString() : ''))).filter(Boolean).sort((a, b) => b.localeCompare(a)), [posts])
+  
+  // Filter tags based on search query
+  const filteredTags = useMemo(() => {
+    if (!tagSearchQuery) return tags
+    return tags.filter(tag => tag.toLowerCase().includes(tagSearchQuery.toLowerCase()))
+  }, [tags, tagSearchQuery])
 
   const filtered = useMemo(() => {
     let list = posts.slice()
-    if (selectedTag) list = list.filter(p => (p.meta.tags ?? []).includes(selectedTag))
+    if (selectedTags.length > 0) {
+      list = list.filter(p => selectedTags.some(tag => (p.meta.tags ?? []).includes(tag)))
+    }
     if (selectedYear) list = list.filter(p => p.meta.date && new Date(p.meta.date).getFullYear().toString() === selectedYear)
     if (query) {
       const q = query.toLowerCase()
@@ -97,7 +130,7 @@ export default function BlogList({ onSelect, onPreview, grouped = false, compact
       return sortAsc ? da - db : db - da
     })
     return list
-  }, [posts, selectedTag, selectedYear, query, sortAsc])
+  }, [posts, selectedTags, selectedYear, query, sortAsc])
 
   // grouped by year
   const groupedByYear = useMemo(() => {
@@ -141,11 +174,81 @@ export default function BlogList({ onSelect, onPreview, grouped = false, compact
         <div className={styles.filters}>
           <div className={styles.filterGroup}>
             <label>Tags</label>
-            <div className={styles.tagList}>
-              {tags.map(t => (
-                <button key={t} className={`${styles.toggleBtn} ${selectedTag === t ? styles.active : ''}`} onClick={() => setSelectedTag(selectedTag === t ? null : t)}>{t}</button>
-              ))}
+            <div className={styles.tagDropdown} ref={tagDropdownRef}>
+              <button 
+                className={`${styles.tagDropdownButton} ${selectedTags.length > 0 ? styles.active : ''}`}
+                onClick={() => setTagDropdownOpen(!tagDropdownOpen)}
+              >
+                {selectedTags.length === 0 
+                  ? 'Select tags...' 
+                  : `${selectedTags.length} tag${selectedTags.length > 1 ? 's' : ''} selected`
+                }
+                <span className={styles.dropdownArrow}>{tagDropdownOpen ? '▲' : '▼'}</span>
+              </button>
+              {tagDropdownOpen && (
+                <div className={styles.tagDropdownMenu}>
+                  <div className={styles.tagDropdownHeader}>
+                    <input
+                      type="text"
+                      placeholder="Search tags..."
+                      value={tagSearchQuery}
+                      onChange={(e) => setTagSearchQuery(e.target.value)}
+                      className={styles.tagSearchInput}
+                    />
+                    <div className={styles.tagHeaderActions}>
+                      <button 
+                        className={styles.clearAllTags} 
+                        onClick={() => setSelectedTags([])}
+                        disabled={selectedTags.length === 0}
+                      >
+                        Clear All
+                      </button>
+                      <span className={styles.tagCount}>{filteredTags.length} of {tags.length} tags</span>
+                    </div>
+                  </div>
+                  <div className={styles.tagDropdownContent}>
+                    {filteredTags.length === 0 ? (
+                      <div className={styles.noTagsFound}>No tags found</div>
+                    ) : (
+                      filteredTags.map(tag => (
+                        <label key={tag} className={styles.tagCheckbox}>
+                          <input 
+                            type="checkbox"
+                            checked={selectedTags.includes(tag)}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setSelectedTags([...selectedTags, tag])
+                              } else {
+                                setSelectedTags(selectedTags.filter(t => t !== tag))
+                              }
+                            }}
+                          />
+                          <span className={styles.tagCheckboxLabel}>{tag}</span>
+                          <span className={styles.tagCount}>
+                            {posts.filter(p => (p.meta.tags ?? []).includes(tag)).length}
+                          </span>
+                        </label>
+                      ))
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
+            {selectedTags.length > 0 && (
+              <div className={styles.selectedTagsPreview}>
+                {selectedTags.map(tag => (
+                  <span key={tag} className={styles.selectedTag}>
+                    {tag}
+                    <button 
+                      onClick={() => setSelectedTags(selectedTags.filter(t => t !== tag))}
+                      className={styles.removeTag}
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
           <div className={styles.filterGroup}>
             <label>Year</label>
@@ -168,7 +271,7 @@ export default function BlogList({ onSelect, onPreview, grouped = false, compact
             </div>
           </div>
           <div className={styles.filterActions}>
-            <button className="secondary-btn" onClick={() => { setQuery(''); setSelectedTag(null); setSelectedYear(null); }}>Clear</button>
+            <button className="secondary-btn" onClick={() => { setQuery(''); setSelectedTags([]); setSelectedYear(null); }}>Clear</button>
             <button className="primary-btn" onClick={() => setSortAsc(s => !s)}>{sortAsc ? 'Oldest' : 'Newest'}</button>
           </div>
         </div>
@@ -276,7 +379,13 @@ function getSmartThumbnail(slug: string, body: string, title: string, tags: stri
   // Known blog images mapping
   const knownImages: { [key: string]: string } = {
     'green-auto': '/images/green-auto.jpg',
-    'war-that-we-won': '/images/india-pak-match.jpg'
+    'war-that-we-won': '/images/india-pak-match.jpg',
+    'gemini-circus': '/images/circus-placeholder.jpg',
+    'summer-holidays': '/images/summer-holidays.jpg',
+    'sound-ok-horn': '/images/bangalore-traffic.jpg',
+    'manohsipcig': '/images/writing-child.jpg',
+    'words': '/images/writing-child.jpg',
+    'bharat-sangeet-utsav': '/images/classical-music.jpg'
   }
   
   // Check if we have a specific image for this post
