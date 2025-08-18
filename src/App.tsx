@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import BlogList from './components/BlogList'
 import { BlogModal } from './components/Modal'
+import { APP_VERSION } from './constants/version'
 
 function App() {
   const [view, setView] = useState<'list'|'archive'|'about'>('list')
@@ -46,7 +47,7 @@ function App() {
         )}
       </main>
 
-      <footer className="site-footer">© {new Date().getFullYear()} Vikki — Built with React + Vite</footer>
+      <footer className="site-footer">© {new Date().getFullYear()} Vikki — Built with React + Vite | v{APP_VERSION}</footer>
 
       {/* bottom navigation for mobile */}
       <nav className="bottom-navigation" aria-label="Primary">

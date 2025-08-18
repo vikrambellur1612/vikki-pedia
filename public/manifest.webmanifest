@@ -1,6 +1,7 @@
 {
   "name": "Vikki-Pedia - Personal Blog & Memories",
   "short_name": "Vikki-Pedia",
+  "version": "1.1.0",
   "description": "A modern, responsive personal blog showcasing life experiences, thoughts, and memories with beautiful design and smart features.",
   "start_url": "/",
   "scope": "/",

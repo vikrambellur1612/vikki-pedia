@@ -1,5 +1,5 @@
-const STATIC_CACHE_NAME = 'vikki-pedia-static-v1.0.0';
-const DYNAMIC_CACHE_NAME = 'vikki-pedia-dynamic-v1.0.0';
+const STATIC_CACHE_NAME = 'vikki-pedia-static-v1.1.0';
+const DYNAMIC_CACHE_NAME = 'vikki-pedia-dynamic-v1.1.0';
 
 // Assets to cache on install
 const STATIC_ASSETS = [
