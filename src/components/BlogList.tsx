@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
-import { BlogModal } from './Modal';
 import styles from './BlogList.module.css';
 
 type Meta = { title?: string; date?: string; tags?: string[] }
