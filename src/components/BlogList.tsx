@@ -380,9 +380,10 @@ function getSmartThumbnail(slug: string, body: string, title: string, tags: stri
   const knownImages: { [key: string]: string } = {
     'green-auto': '/images/green-auto.jpg',
     'war-that-we-won': '/images/india-pak-match.jpg',
-    'gemini-circus': '/images/circus-placeholder.jpg',
+    'gemini-circus': '/images/gemini-circus.jpg',
     'summer-holidays': '/images/summer-holidays.jpg',
-    'sound-ok-horn': '/images/bangalore-traffic.jpg',
+    'sound-ok-horn': '/images/traffic-jam.jpg',
+    'sachin-double-century': '/images/cricket-sport.jpg',
     'manohsipcig': '/images/writing-child.jpg',
     'words': '/images/writing-child.jpg',
     'bharat-sangeet-utsav': '/images/classical-music.jpg',

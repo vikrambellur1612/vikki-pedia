@@ -1,5 +1,5 @@
-const STATIC_CACHE_NAME = 'vikki-pedia-static-v1.2.0';
-const DYNAMIC_CACHE_NAME = 'vikki-pedia-dynamic-v1.2.0';
+const STATIC_CACHE_NAME = 'vikki-pedia-static-v2.0.0';
+const DYNAMIC_CACHE_NAME = 'vikki-pedia-dynamic-v2.0.0';
 
 // Assets to cache on install
 const STATIC_ASSETS = [
@@ -25,7 +25,10 @@ const IMAGE_ASSETS = [
   '/images/classical-music.jpg',
   '/images/cricket-energy.jpg',
   '/images/advertising-blunders.jpg',
-  '/images/new-year-2010.jpg'
+  '/images/new-year-2010.jpg',
+  '/images/gemini-circus.jpg',
+  '/images/traffic-jam.jpg',
+  '/images/cricket-sport.jpg'
 ];
 
 // Install event - cache static assets

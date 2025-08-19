@@ -35,27 +35,42 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .header-bg {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
-  max-width: 100%;
-  max-height: 100%;
 }
 
-.site-header h1 {
-  margin: 0;
+.header-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.header-overlay h1 {
+  margin: 0 0 0.5rem 0;
   font-size: 3.5rem;
-  color: white;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -1px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  color: #FFD700;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.header-overlay p {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #F0F8FF;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(240, 248, 255, 0.2);
 }
 
 .site-main {
@@ -477,6 +492,7 @@
   transform: rotate(90deg) scale(1.1);
 }
 
+@media (max-width: 768px) {
   .blog-modal-body {
     font-size: 1rem;
     line-height: 1.6;
@@ -491,10 +507,16 @@
     margin-bottom: 1rem;
   }
   
+  .header-overlay h1 {
+    font-size: 2.5rem;
+  }
+  
+  .header-overlay p {
+    font-size: 1.1rem;
+  }
+  
   .header-bg {
-    object-fit: contain;
-    width: 100%;
-    height: auto;
+    object-fit: cover;
   }
 }
 
@@ -504,10 +526,16 @@
     max-height: 160px;
   }
   
+  .header-overlay h1 {
+    font-size: 2rem;
+  }
+  
+  .header-overlay p {
+    font-size: 1rem;
+  }
+  
   .header-bg {
-    object-fit: contain;
-    width: 100%;
-    height: auto;
+    object-fit: cover;
   }
 }
 
