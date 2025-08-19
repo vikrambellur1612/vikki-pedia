@@ -12,27 +12,42 @@
 }
 
 .site-header {
+  position: relative;
   text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+  padding: 0;
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
   border-radius: var(--border-radius-lg);
   margin-bottom: 2rem;
   box-shadow: var(--shadow);
+  overflow: hidden;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.header-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .site-header h1 {
   margin: 0;
   font-size: 3.5rem;
-  color: var(--text-primary);
-  font-weight: 300;
+  color: white;
+  font-weight: 600;
   letter-spacing: -1px;
-}
-
-.tagline { 
-  color: var(--text-secondary); 
-  font-size: 1.1rem;
-  margin-top: 8px;
-  font-weight: 400;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .site-main {
@@ -454,16 +469,25 @@
   transform: rotate(90deg) scale(1.1);
 }
 
-.blog-modal-body {
-  padding: 2rem 2.5rem 2.5rem;
-  overflow-y: auto;
-  flex: 1;
-  line-height: 1.8;
-  background: white;
-  border-radius: 0 0 20px 20px;
+  .blog-modal-body {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
 }
 
-/* Enhanced typography for modal content */
+/* Header responsive styles */
+@media (max-width: 768px) {
+  .site-header {
+    height: 150px;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    height: 120px;
+  }
+}/* Enhanced typography for modal content */
 .blog-modal-body h1, 
 .blog-modal-body h2, 
 .blog-modal-body h3,

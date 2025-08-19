@@ -1,26 +1,26 @@
-/* Design system variables inspired by Minimalist Baker */
+/* Design system variables inspired by the header image blue theme */
 :root {
-  --primary-color: #ff9f7a;
-  --primary-dark: #ff7a5c;
-  --primary-light: #fff5f2;
-  --primary-hover: #ff8c66;
-  --secondary-color: #8fbc8f;
+  --primary-color: #4A90E2;
+  --primary-dark: #357ABD;
+  --primary-light: #E3F2FD;
+  --primary-hover: #5BA0F2;
+  --secondary-color: #64B5F6;
   --background-color: #fefefe;
   --surface-color: #ffffff;
   --surface-light: #fafafa;
-  --text-primary: #2c2c2c;
+  --text-primary: #1a1a1a;
   --text-secondary: #666;
   --text-muted: #999;
   --border-color: #f0f0f0;
-  --shadow: 0 4px 20px rgba(0,0,0,0.08);
-  --shadow-lg: 0 20px 40px rgba(0,0,0,0.15);
+  --shadow: 0 4px 20px rgba(74,144,226,0.12);
+  --shadow-lg: 0 20px 40px rgba(74,144,226,0.18);
   --border-radius: 16px;
   --border-radius-lg: 20px;
   --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --success-color: #8fbc8f;
   --warning-color: #ffb366;
   --error-color: #ff7a7a;
-  --info-color: #7ab3ff;
+  --info-color: #4A90E2;
 }
 
 /* Modern CSS Reset and base styles */

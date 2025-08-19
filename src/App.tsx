@@ -11,8 +11,9 @@ function App() {
   return (
     <div id="app-root">
       <header className="site-header">
-        <h1>Vikki-Pedia</h1>
-        <p className="tagline">Personal blog archive — Discover insightful articles, tutorials, and thoughts. Click any card to read the full post.</p>
+        <div className="header-image">
+          <img src="/images/Header.jpg" alt="Vikki-Pedia Header" className="header-bg" />
+        </div>
       </header>
 
       <main className="site-main">

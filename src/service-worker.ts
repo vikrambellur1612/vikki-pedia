@@ -1,24 +1,23 @@
-const STATIC_CACHE_NAME = 'vikki-pedia-static-v1.1.0';
-const DYNAMIC_CACHE_NAME = 'vikki-pedia-dynamic-v1.1.0';
+const STATIC_CACHE_NAME = 'vikki-pedia-static-v1.2.0';
+const DYNAMIC_CACHE_NAME = 'vikki-pedia-dynamic-v1.2.0';
 
 // Assets to cache on install
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
-  '/vite.svg',
-  '/icon-192x192.png',
-  '/icon-512x512.png',
-  '/apple-touch-icon.png',
+  '/favicon.ico',
+  '/images/favicon.jpg',
+  '/images/Header.jpg',
 ];
 
 // Image assets to cache
 const IMAGE_ASSETS = [
-  '/images/vikram.jpg',
+  '/images/favicon.jpg',
+  '/images/Header.jpg',
   '/images/dev-placeholder.jpg',
   '/images/tech-placeholder.jpg',
   '/images/travel-placeholder.jpg',
-  '/images/personal-placeholder.jpg',
   '/images/reflection-placeholder.jpg',
   '/images/story-placeholder.jpg',
   '/images/circus-placeholder.jpg',
