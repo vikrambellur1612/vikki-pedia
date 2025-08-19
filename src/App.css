@@ -20,7 +20,9 @@
   margin-bottom: 2rem;
   box-shadow: var(--shadow);
   overflow: hidden;
-  height: 200px;
+  min-height: 200px;
+  max-height: 300px;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,12 +35,18 @@
   width: 100%;
   height: 100%;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header-bg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .site-header h1 {
@@ -478,14 +486,35 @@
 /* Header responsive styles */
 @media (max-width: 768px) {
   .site-header {
-    height: 150px;
+    min-height: 150px;
+    max-height: 200px;
     margin-bottom: 1rem;
+  }
+  
+  .header-bg {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
   }
 }
 
 @media (max-width: 480px) {
   .site-header {
-    height: 120px;
+    min-height: 120px;
+    max-height: 160px;
+  }
+  
+  .header-bg {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Additional responsive handling for very wide screens */
+@media (min-width: 1200px) {
+  .site-header {
+    max-height: 350px;
   }
 }/* Enhanced typography for modal content */
 .blog-modal-body h1, 
